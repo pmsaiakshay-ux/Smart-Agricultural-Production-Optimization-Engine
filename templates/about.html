@@ -1,0 +1,132 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="my-5">
+    <div class="row justify-content-center">
+        <div class="col-xl-9 col-lg-11">
+            <div class="card border-0 shadow-lg glass-card rounded-4 p-4 p-md-5">
+                
+                <div class="text-center mb-5">
+                    <i class="fa-solid fa-graduation-cap text-success fs-1 mb-2"></i>
+                    <h2 class="fw-bold header-gradient">About OptiCrop Engine</h2>
+                    <p class="text-muted">An analytical breakdown of the system, models, and features.</p>
+                </div>
+
+                <!-- Problem Statement -->
+                <div class="mb-5">
+                    <h4 class="fw-bold text-success"><i class="fa-solid fa-circle-exclamation me-2"></i> Problem Statement</h4>
+                    <p class="text-muted">
+                        Traditional farming methods heavily rely on historical averages and trial-and-error, which are increasingly unreliable due to climate change and volatile weather patterns. Planting the wrong crop leads to poor soil health, wasted fertilizer investments, water pollution, and low yield. Crop optimization is critical for sustainable food production and farmer livelihoods.
+                    </p>
+                </div>
+
+                <!-- Objectives -->
+                <div class="mb-5">
+                    <h4 class="fw-bold text-success"><i class="fa-solid fa-bullseye me-2"></i> Project Objectives</h4>
+                    <ul class="text-muted list-unstyled ps-0">
+                        <li class="mb-2"><i class="fa-solid fa-circle-check text-success me-2"></i> Collect chemical and weather metrics to make data-driven crop recommendations.</li>
+                        <li class="mb-2"><i class="fa-solid fa-circle-check text-success me-2"></i> Perform automated training of 6 different classification models to find the highest accuracy.</li>
+                        <li class="mb-2"><i class="fa-solid fa-circle-check text-success me-2"></i> Deliver fertilizer advice and farming instructions to promote healthy crop yields.</li>
+                        <li class="mb-2"><i class="fa-solid fa-circle-check text-success me-2"></i> Render interactive performance charts (feature importance, confusion matrix).</li>
+                    </ul>
+                </div>
+
+                <!-- Machine Learning Algorithms -->
+                <div class="mb-5">
+                    <h4 class="fw-bold text-success mb-3"><i class="fa-solid fa-microchip me-2"></i> Machine Learning Classifiers</h4>
+                    <p class="text-muted">
+                        We compare six classic machine learning classification algorithms to select the best predictor:
+                    </p>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="p-3 bg-light-subtle rounded-3 border">
+                                <h6 class="fw-bold text-dark-emphasis">1. Logistic Regression</h6>
+                                <p class="small text-muted mb-0">Models class probabilities using a logistic function. Serves as a solid linear baseline.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 bg-light-subtle rounded-3 border">
+                                <h6 class="fw-bold text-dark-emphasis">2. Decision Tree</h6>
+                                <p class="small text-muted mb-0">Non-linear model splits dataset using feature information gain. Highly interpretable.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 bg-light-subtle rounded-3 border">
+                                <h6 class="fw-bold text-dark-emphasis">3. Random Forest</h6>
+                                <p class="small text-muted mb-0">Ensemble of decision trees. Reduces overfitting through bootstrap aggregating (bagging).</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 bg-light-subtle rounded-3 border">
+                                <h6 class="fw-bold text-dark-emphasis">4. K-Nearest Neighbors (KNN)</h6>
+                                <p class="small text-muted mb-0">Instance-based learning classifier. Recommends crop based on proximity to historical soil profiles.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 bg-light-subtle rounded-3 border">
+                                <h6 class="fw-bold text-dark-emphasis">5. Support Vector Machine (SVM)</h6>
+                                <p class="small text-muted mb-0">Projects input features into higher dimensions using kernels to locate optimal decision boundaries.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 bg-light-subtle rounded-3 border">
+                                <h6 class="fw-bold text-dark-emphasis">6. Gaussian Naive Bayes</h6>
+                                <p class="small text-muted mb-0">Probabilistic classifier based on Bayes' theorem assuming feature independence. Computationally fast.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dataset Details -->
+                <div class="mb-5">
+                    <h4 class="fw-bold text-success"><i class="fa-solid fa-database me-2"></i> Dataset Description</h4>
+                    <p class="text-muted mb-2">
+                        The model trains on the standard <strong>Crop Recommendation Dataset</strong>, which includes 2,200 rows covering 22 crop classes:
+                    </p>
+                    <span class="badge bg-secondary-subtle text-secondary border me-1 mb-1">Rice</span>
+                    <span class="badge bg-secondary-subtle text-secondary border me-1 mb-1">Maize</span>
+                    <span class="badge bg-secondary-subtle text-secondary border me-1 mb-1">Chickpea</span>
+                    <span class="badge bg-secondary-subtle text-secondary border me-1 mb-1">Kidneybeans</span>
+                    <span class="badge bg-secondary-subtle text-secondary border me-1 mb-1">Pigeonpeas</span>
+                    <span class="badge bg-secondary-subtle text-secondary border me-1 mb-1">Mothbeans</span>
+                    <span class="badge bg-secondary-subtle text-secondary border me-1 mb-1">Mungbean</span>
+                    <span class="badge bg-secondary-subtle text-secondary border me-1 mb-1">Blackgram</span>
+                    <span class="badge bg-secondary-subtle text-secondary border me-1 mb-1">Lentil</span>
+                    <span class="badge bg-secondary-subtle text-secondary border me-1 mb-1">Pomegranate</span>
+                    <span class="badge bg-secondary-subtle text-secondary border me-1 mb-1">Banana</span>
+                    <span class="badge bg-secondary-subtle text-secondary border me-1 mb-1">Mango</span>
+                    <span class="badge bg-secondary-subtle text-secondary border me-1 mb-1">Grapes</span>
+                    <span class="badge bg-secondary-subtle text-secondary border me-1 mb-1">Watermelon</span>
+                    <span class="badge bg-secondary-subtle text-secondary border me-1 mb-1">Muskmelon</span>
+                    <span class="badge bg-secondary-subtle text-secondary border me-1 mb-1">Apple</span>
+                    <span class="badge bg-secondary-subtle text-secondary border me-1 mb-1">Orange</span>
+                    <span class="badge bg-secondary-subtle text-secondary border me-1 mb-1">Papaya</span>
+                    <span class="badge bg-secondary-subtle text-secondary border me-1 mb-1">Coconut</span>
+                    <span class="badge bg-secondary-subtle text-secondary border me-1 mb-1">Cotton</span>
+                    <span class="badge bg-secondary-subtle text-secondary border me-1 mb-1">Jute</span>
+                    <span class="badge bg-secondary-subtle text-secondary border me-1 mb-1">Coffee</span>
+                </div>
+
+                <!-- Tech Stack -->
+                <div class="mb-5">
+                    <h4 class="fw-bold text-success"><i class="fa-solid fa-code me-2"></i> Tech Stack</h4>
+                    <p class="text-muted">
+                        Built using standard modern developer tooling: Python 3.11, Flask, Scikit-learn, Pandas, NumPy, Joblib, Matplotlib, Seaborn, HTML5, Vanilla CSS3, Bootstrap 5, and JavaScript.
+                    </p>
+                </div>
+
+                <!-- Future Enhancements -->
+                <div>
+                    <h4 class="fw-bold text-success"><i class="fa-solid fa-rocket me-2"></i> Future Enhancements</h4>
+                    <ul class="text-muted list-unstyled ps-0">
+                        <li class="mb-2"><i class="fa-solid fa-angle-right text-success me-2"></i> Real-time weather forecasting using OpenWeather API integration.</li>
+                        <li class="mb-2"><i class="fa-solid fa-angle-right text-success me-2"></i> IoT sensor interface for direct, automated NPK readings.</li>
+                        <li class="mb-2"><i class="fa-solid fa-angle-right text-success me-2"></i> Mobile application layout using React Native wrapper.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

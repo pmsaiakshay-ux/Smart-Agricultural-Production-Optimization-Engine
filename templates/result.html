@@ -1,0 +1,184 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="my-5">
+    <div class="row g-4">
+        <!-- Main Result Card -->
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-lg bg-success text-white rounded-4 p-4 p-md-5 h-100 position-relative overflow-hidden result-card-gradient">
+                <div class="position-absolute end-0 bottom-0 opacity-10 me-n3 mb-n3">
+                    <i class="fa-solid fa-seedling" style="font-size: 18rem;"></i>
+                </div>
+                <div>
+                    <span class="badge bg-white text-success px-3 py-2 rounded-pill fw-bold mb-3">
+                        <i class="fa-solid fa-square-poll-vertical me-1"></i> Analysis Complete
+                    </span>
+                    <h1 class="display-5 fw-bold mb-1">Recommended Crop</h1>
+                    <h2 class="display-3 fw-extrabold text-warning mb-3">{{ crop }}</h2>
+                    
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="me-4">
+                            <p class="text-white-50 small mb-0">Model Confidence</p>
+                            <h4 class="fw-bold mb-0 text-light">{{ confidence }}</h4>
+                        </div>
+                        <div>
+                            <p class="text-white-50 small mb-0">Predicted Using</p>
+                            <h4 class="fw-bold mb-0 text-light">Optimal Classifier</h4>
+                        </div>
+                    </div>
+
+                    <hr class="border-white-50 my-4">
+
+                    <!-- User input recap -->
+                    <h5 class="fw-bold mb-3"><i class="fa-solid fa-sliders me-2"></i> Input Parameters Analysed</h5>
+                    <div class="row g-2">
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-4">
+                            <div class="p-2 rounded-3 bg-white bg-opacity-10 text-center">
+                                <span class="d-block small text-white-50">Nitrogen</span>
+                                <span class="fw-bold">{{ inputs.n }}</span> <span class="small text-white-50">mg</span>
+                            </div>
+                        </div>
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-4">
+                            <div class="p-2 rounded-3 bg-white bg-opacity-10 text-center">
+                                <span class="d-block small text-white-50">Phosphorous</span>
+                                <span class="fw-bold">{{ inputs.p }}</span> <span class="small text-white-50">mg</span>
+                            </div>
+                        </div>
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-4">
+                            <div class="p-2 rounded-3 bg-white bg-opacity-10 text-center">
+                                <span class="d-block small text-white-50">Potassium</span>
+                                <span class="fw-bold">{{ inputs.k }}</span> <span class="small text-white-50">mg</span>
+                            </div>
+                        </div>
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-4">
+                            <div class="p-2 rounded-3 bg-white bg-opacity-10 text-center">
+                                <span class="d-block small text-white-50">Temp</span>
+                                <span class="fw-bold">{{ inputs.temp }}</span> <span class="small text-white-50">°C</span>
+                            </div>
+                        </div>
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-4">
+                            <div class="p-2 rounded-3 bg-white bg-opacity-10 text-center">
+                                <span class="d-block small text-white-50">Humidity</span>
+                                <span class="fw-bold">{{ inputs.humidity }}</span> <span class="small text-white-50">%</span>
+                            </div>
+                        </div>
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-4">
+                            <div class="p-2 rounded-3 bg-white bg-opacity-10 text-center">
+                                <span class="d-block small text-white-50">Soil pH</span>
+                                <span class="fw-bold">{{ inputs.ph }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Farming Guidelines -->
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-lg glass-card rounded-4 p-4 p-md-5 h-100">
+                <h3 class="fw-bold text-success mb-4"><i class="fa-solid fa-list-check me-2"></i> Agronomic Advisory</h3>
+
+                <div class="mb-4">
+                    <div class="d-flex align-items-start mb-2">
+                        <div class="bg-success-subtle rounded-circle p-2 me-3 text-success">
+                            <i class="fa-solid fa-temperature-arrow-up"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-1">Optimal Conditions</h5>
+                            <p class="text-muted small mb-0">{{ conditions }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <div class="d-flex align-items-start mb-2">
+                        <div class="bg-primary-subtle rounded-circle p-2 me-3 text-primary">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-1">Fertilizer Recommendation</h5>
+                            <p class="text-muted small mb-0">{{ fertilizer }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <div class="d-flex align-items-start mb-2">
+                        <div class="bg-warning-subtle rounded-circle p-2 me-3 text-warning">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-1">General Cultivation Tips</h5>
+                            <p class="text-muted small mb-0">{{ tips }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-wrap gap-2 mt-auto pt-3">
+                    <a href="{{ url_for('predict') }}" class="btn btn-success rounded-pill px-4 hover-lift">
+                        <i class="fa-solid fa-chevron-left me-1"></i> Predict Again
+                    </a>
+                    <a href="{{ url_for('export_csv') }}" class="btn btn-outline-success rounded-pill px-4 hover-lift">
+                        <i class="fa-solid fa-file-csv me-1"></i> Export History CSV
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Analytics Dashboard (Bonus / ML Visualization charts) -->
+    <div class="my-5">
+        <h3 class="fw-bold header-gradient text-center mb-4"><i class="fa-solid fa-chart-pie me-2"></i> Model Performance & Feature Insights</h3>
+        
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <div class="card border-0 shadow-sm glass-card rounded-4 p-3 h-100 text-center">
+                    <h5 class="fw-bold mb-3 text-success">Feature Importance Profile</h5>
+                    <img src="{{ url_for('static', filename='images/feature_importance.png') }}" alt="Feature Importance" class="img-fluid rounded-3 border shadow-sm" onerror="this.src='https://placehold.co/600x400?text=Run+train.py+to+generate+Feature+Importance'">
+                    <p class="text-muted small mt-2">Rankings of variables contributing to the crop selection decision.</p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card border-0 shadow-sm glass-card rounded-4 p-3 h-100 text-center">
+                    <h5 class="fw-bold mb-3 text-success">Model Accuracy Comparison</h5>
+                    <img src="{{ url_for('static', filename='images/model_comparison.png') }}" alt="Model Accuracy Comparison" class="img-fluid rounded-3 border shadow-sm" onerror="this.src='https://placehold.co/600x400?text=Run+train.py+to+generate+Model+Comparison'">
+                    <p class="text-muted small mt-2">Weighted validation accuracies of the evaluated algorithms.</p>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="card border-0 shadow-sm glass-card rounded-4 p-4 text-center">
+                    <h5 class="fw-bold mb-3 text-success">Confusion Matrix (Best Classifier)</h5>
+                    <img src="{{ url_for('static', filename='images/confusion_matrix.png') }}" alt="Confusion Matrix" class="img-fluid rounded-3 border shadow-sm mx-auto" style="max-height: 550px; object-fit: contain;" onerror="this.src='https://placehold.co/600x400?text=Run+train.py+to+generate+Confusion+Matrix'">
+                    <p class="text-muted small mt-2">Mapping of prediction accuracies vs actual ground-truth classifications across classes.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Prediction History Log Table -->
+    <div class="my-5">
+        <div class="card border-0 shadow-sm glass-card rounded-4 p-4">
+            <h4 class="fw-bold text-success mb-3"><i class="fa-solid fa-clock-rotate-left me-2"></i> Prediction History Logs</h4>
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0" id="historyTable">
+                    <thead class="table-light">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Inputs (N-P-K)</th>
+                            <th scope="col">Temp / Humid / pH / Rain</th>
+                            <th scope="col">Predicted Crop</th>
+                            <th scope="col">Confidence</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historyTableBody">
+                        <!-- Loaded dynamically via JS -->
+                        <tr>
+                            <td colspan="5" class="text-center text-muted">Loading prediction history logs...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

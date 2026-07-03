@@ -1,0 +1,123 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="row justify-content-center my-5">
+    <div class="col-xl-8 col-lg-10">
+        <div class="card border-0 shadow-lg glass-card rounded-4 p-4 p-md-5">
+            <div class="text-center mb-4">
+                <i class="fa-solid fa-compass-drafting text-success fs-1 mb-2"></i>
+                <h2 class="fw-bold header-gradient">Crop Recommendation Engine</h2>
+                <p class="text-muted">Fill in the environmental and soil details to predict the optimal crop.</p>
+            </div>
+
+            <form action="{{ url_for('predict') }}" method="POST" id="predictForm" class="needs-validation" novalidate>
+                
+                <!-- Soil Nutrients Section -->
+                <div class="row mb-4">
+                    <h5 class="fw-bold text-success mb-3"><i class="fa-solid fa-seedling me-2"></i> Soil Nutrients (NPK)</h5>
+                    
+                    <div class="col-md-4 mb-3">
+                        <label for="n" class="form-label fw-medium">Nitrogen (N)</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa-solid fa-n text-muted"></i></span>
+                            <input type="number" step="any" class="form-control {% if errors.n %}is-invalid{% endif %}" id="n" name="n" placeholder="e.g. 50" value="{{ form_data.n or '' }}" required>
+                            <span class="input-group-text">mg/kg</span>
+                            {% if errors.n %}
+                                <div class="invalid-feedback d-block">{{ errors.n }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label for="p" class="form-label fw-medium">Phosphorous (P)</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa-solid fa-p text-muted"></i></span>
+                            <input type="number" step="any" class="form-control {% if errors.p %}is-invalid{% endif %}" id="p" name="p" placeholder="e.g. 40" value="{{ form_data.p or '' }}" required>
+                            <span class="input-group-text">mg/kg</span>
+                            {% if errors.p %}
+                                <div class="invalid-feedback d-block">{{ errors.p }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label for="k" class="form-label fw-medium">Potassium (K)</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa-solid fa-k text-muted"></i></span>
+                            <input type="number" step="any" class="form-control {% if errors.k %}is-invalid{% endif %}" id="k" name="k" placeholder="e.g. 100" value="{{ form_data.k or '' }}" required>
+                            <span class="input-group-text">mg/kg</span>
+                            {% if errors.k %}
+                                <div class="invalid-feedback d-block">{{ errors.k }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Climate parameters -->
+                <div class="row mb-4">
+                    <h5 class="fw-bold text-success mb-3"><i class="fa-solid fa-cloud-sun me-2"></i> Weather & Environmental Conditions</h5>
+                    
+                    <div class="col-md-6 mb-3">
+                        <label for="temp" class="form-label fw-medium">Temperature</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa-solid fa-temperature-three-quarters text-muted"></i></span>
+                            <input type="number" step="any" class="form-control {% if errors.temp %}is-invalid{% endif %}" id="temp" name="temp" placeholder="e.g. 24.5" value="{{ form_data.temp or '' }}" required>
+                            <span class="input-group-text">°C</span>
+                            {% if errors.temp %}
+                                <div class="invalid-feedback d-block">{{ errors.temp }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="humidity" class="form-label fw-medium">Humidity</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa-solid fa-droplet text-muted"></i></span>
+                            <input type="number" step="any" class="form-control {% if errors.humidity %}is-invalid{% endif %}" id="humidity" name="humidity" placeholder="e.g. 80.0" value="{{ form_data.humidity or '' }}" required>
+                            <span class="input-group-text">%</span>
+                            {% if errors.humidity %}
+                                <div class="invalid-feedback d-block">{{ errors.humidity }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="ph" class="form-label fw-medium">Soil pH</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa-solid fa-eye-dropper text-muted"></i></span>
+                            <input type="number" step="any" class="form-control {% if errors.ph %}is-invalid{% endif %}" id="ph" name="ph" placeholder="e.g. 6.5" value="{{ form_data.ph or '' }}" required>
+                            <span class="input-group-text">pH</span>
+                            {% if errors.ph %}
+                                <div class="invalid-feedback d-block">{{ errors.ph }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="rainfall" class="form-label fw-medium">Rainfall</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa-solid fa-cloud-showers-water text-muted"></i></span>
+                            <input type="number" step="any" class="form-control {% if errors.rainfall %}is-invalid{% endif %}" id="rainfall" name="rainfall" placeholder="e.g. 200.3" value="{{ form_data.rainfall or '' }}" required>
+                            <span class="input-group-text">mm</span>
+                            {% if errors.rainfall %}
+                                <div class="invalid-feedback d-block">{{ errors.rainfall }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Button -->
+                <div class="d-grid mt-4">
+                    <button type="submit" class="btn btn-success btn-lg py-3 rounded-pill hover-lift" id="submitBtn">
+                        <span class="normal-state"><i class="fa-solid fa-calculator me-2"></i> Predict Best Crop</span>
+                        <span class="loading-state d-none">
+                            <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                            Running Engine Analysis...
+                        </span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

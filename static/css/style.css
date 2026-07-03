@@ -1,0 +1,146 @@
+/* CSS Variables for Light / Dark Mode styling */
+:root {
+    --bg-color: #f8f9fa;
+    --card-bg: rgba(255, 255, 255, 0.85);
+    --card-border: rgba(255, 255, 255, 0.4);
+    --text-primary: #212529;
+    --text-secondary: #6c757d;
+    --nav-bg: rgba(255, 255, 255, 0.8);
+    --footer-bg: #ffffff;
+    --primary-gradient: linear-gradient(135deg, #198754 0%, #20c997 100%);
+    --result-gradient: linear-gradient(135deg, #145a32 0%, #198754 100%);
+    --shadow-sm: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+    --shadow-lg: 0 10px 30px -5px rgba(0, 0, 0, 0.05), 0 8px 15px -5px rgba(0, 0, 0, 0.03);
+}
+
+[data-theme="dark"] {
+    --bg-color: #121416;
+    --card-bg: rgba(24, 28, 31, 0.85);
+    --card-border: rgba(255, 255, 255, 0.07);
+    --text-primary: #f8f9fa;
+    --text-secondary: #a0aec0;
+    --nav-bg: rgba(18, 20, 22, 0.8);
+    --footer-bg: #181c1f;
+    --shadow-sm: 0 4px 6px -1px rgba(0,0,0,0.3);
+    --shadow-lg: 0 15px 35px -5px rgba(0, 0, 0, 0.5);
+}
+
+/* Core setup */
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-wrapper {
+    flex: 1;
+    margin-top: 80px; /* Offset for sticky navbar */
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+    background: var(--card-bg) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--card-border) !important;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+    box-shadow: var(--shadow-sm) !important;
+}
+
+.glass-card:hover {
+    box-shadow: var(--shadow-lg) !important;
+}
+
+/* Navbar */
+.navbar {
+    background: var(--nav-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--card-border);
+    transition: background-color 0.3s ease;
+    height: 75px;
+}
+
+.nav-link {
+    color: var(--text-primary);
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: #198754 !important;
+}
+
+/* Footer styling */
+.footer {
+    background-color: var(--footer-bg);
+    border-top: 1px solid var(--card-border) !important;
+    transition: background-color 0.3s ease;
+}
+
+/* Gradient text headers */
+.header-gradient {
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Result Card */
+.result-card-gradient {
+    background: var(--result-gradient) !important;
+}
+
+/* Interactive elements */
+.hover-lift {
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-5px);
+}
+
+.rounded-pill {
+    border-radius: 50rem !important;
+}
+
+/* Animations */
+@keyframes float {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(5deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.hero-icon-animate {
+    animation: float 6s ease-in-out infinite;
+    color: #198754;
+    filter: drop-shadow(0 15px 25px rgba(25, 135, 84, 0.25));
+}
+
+.blob-bg {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(32,201,151,0.2) 0%, rgba(25,135,84,0) 70%);
+    border-radius: 50%;
+    filter: blur(20px);
+}
+
+/* Table dark mode adaptability */
+.table {
+    --bs-table-bg: transparent;
+    --bs-table-color: var(--text-primary);
+    --bs-table-border-color: var(--card-border);
+}
+
+.table-light {
+    --bs-table-bg: rgba(0, 0, 0, 0.03);
+    --bs-table-color: var(--text-primary);
+}
+
+[data-theme="dark"] .table-light {
+    --bs-table-bg: rgba(255, 255, 255, 0.05);
+}

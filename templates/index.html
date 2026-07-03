@@ -1,0 +1,130 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="row align-items-center justify-content-between my-5 py-4 hero-section g-4">
+    <div class="col-lg-6">
+        <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-2 rounded-pill fw-semibold mb-3">
+            <i class="fa-solid fa-bolt me-1"></i> AI-Powered Agriculture
+        </span>
+        <h1 class="display-4 fw-bold mb-3 header-gradient text-dark-emphasis">Maximize Yields with Smart Predictions</h1>
+        <p class="lead text-muted mb-4">
+            OptiCrop analyzes soil nutrients (Nitrogen, Phosphorous, Potassium) and climatic conditions to recommend the perfect crop for your land, reducing risks and maximizing output.
+        </p>
+        <div class="d-flex flex-wrap gap-3">
+            <a href="{{ url_for('predict') }}" class="btn btn-success btn-lg px-4 py-3 rounded-pill shadow-lg border-0 hover-lift">
+                <i class="fa-solid fa-wand-magic-sparkles me-2"></i> Start Predicting
+            </a>
+            <a href="{{ url_for('about') }}" class="btn btn-outline-secondary btn-lg px-4 py-3 rounded-pill hover-lift">
+                Learn More <i class="fa-solid fa-arrow-right ms-1"></i>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-5 text-center position-relative">
+        <div class="blob-bg position-absolute top-50 start-50 translate-middle"></div>
+        <i class="fa-solid fa-seedling text-success hero-icon-animate" style="font-size: 15rem; z-index: 10; position: relative;"></i>
+    </div>
+</div>
+
+<!-- Features Section -->
+<div class="my-5 py-4">
+    <div class="text-center mb-5">
+        <h2 class="fw-bold fs-1 header-gradient">Advanced Engine Features</h2>
+        <p class="text-muted">A production-grade machine learning pipeline assisting precision farming decisions.</p>
+    </div>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm glass-card rounded-4 p-4 hover-lift">
+                <div class="icon-box bg-success-subtle rounded-3 d-inline-flex p-3 mb-4 text-success">
+                    <i class="fa-solid fa-microchip fs-3"></i>
+                </div>
+                <h3 class="fw-bold h5">6 ML Models Compared</h3>
+                <p class="text-muted small">Evaluates Logistic Regression, Random Forest, SVM, Decision Tree, KNN, and Gaussian Naive Bayes, dynamically choosing the most accurate model.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm glass-card rounded-4 p-4 hover-lift">
+                <div class="icon-box bg-primary-subtle rounded-3 d-inline-flex p-3 mb-4 text-primary">
+                    <i class="fa-solid fa-chart-line fs-3"></i>
+                </div>
+                <h3 class="fw-bold h5">Interactive Analytics</h3>
+                <p class="text-muted small">Access visual feedback, including feature importance rankings, model comparison accuracies, and detailed confusion matrices.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm glass-card rounded-4 p-4 hover-lift">
+                <div class="icon-box bg-warning-subtle rounded-3 d-inline-flex p-3 mb-4 text-warning">
+                    <i class="fa-solid fa-lightbulb fs-3"></i>
+                </div>
+                <h3 class="fw-bold h5">Agronomic Guidance</h3>
+                <p class="text-muted small">Get dynamic suggestions on ideal fertilizers, watering tips, and general farming practices for each recommended crop.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- How It Works Section -->
+<div class="my-5 py-4 bg-light-subtle rounded-4 p-4 p-md-5 border">
+    <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+            <h2 class="fw-bold fs-2 header-gradient mb-4">How OptiCrop Recommends the Best Crop</h2>
+            <div class="d-flex mb-4">
+                <div class="step-num text-success fw-bold me-3 fs-3">01</div>
+                <div>
+                    <h4 class="fw-bold h5">Enter Parameters</h4>
+                    <p class="text-muted small">Input soil nutrient metrics (NPK) along with environmental parameters (temperature, humidity, pH, rainfall).</p>
+                </div>
+            </div>
+            <div class="d-flex mb-4">
+                <div class="step-num text-success fw-bold me-3 fs-3">02</div>
+                <div>
+                    <h4 class="fw-bold h5">Real-time Inference</h4>
+                    <p class="text-muted small">The backend scales the input values and queries the optimal serialized machine learning model.</p>
+                </div>
+            </div>
+            <div class="d-flex">
+                <div class="step-num text-success fw-bold me-3 fs-3">03</div>
+                <div>
+                    <h4 class="fw-bold h5">Receive Cultivation Advice</h4>
+                    <p class="text-muted small">Instantly view the recommended crop, prediction confidence, suggested fertilizers, and growth guidelines.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="p-4 bg-white shadow rounded-4 border">
+                <h4 class="fw-bold mb-3"><i class="fa-solid fa-list-check text-success me-2"></i> Input Parameters Checked</h4>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span><i class="fa-solid fa-atom text-success me-2"></i> Nitrogen (N)</span>
+                        <span class="badge bg-success-subtle text-success rounded-pill">0 - 150 mg/kg</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span><i class="fa-solid fa-flask text-success me-2"></i> Phosphorous (P)</span>
+                        <span class="badge bg-success-subtle text-success rounded-pill">0 - 150 mg/kg</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span><i class="fa-solid fa-cubes text-success me-2"></i> Potassium (K)</span>
+                        <span class="badge bg-success-subtle text-success rounded-pill">0 - 210 mg/kg</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span><i class="fa-solid fa-temperature-half text-success me-2"></i> Temperature</span>
+                        <span class="badge bg-success-subtle text-success rounded-pill">-10 - 60°C</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span><i class="fa-solid fa-droplet text-success me-2"></i> Humidity</span>
+                        <span class="badge bg-success-subtle text-success rounded-pill">0 - 100%</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span><i class="fa-solid fa-gauge text-success me-2"></i> Soil pH</span>
+                        <span class="badge bg-success-subtle text-success rounded-pill">0 - 14</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span><i class="fa-solid fa-cloud-showers-water text-success me-2"></i> Rainfall</span>
+                        <span class="badge bg-success-subtle text-success rounded-pill">0 - 500 mm</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
