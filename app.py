@@ -1,8 +1,12 @@
 import os
 import json
 import csv
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, send_file
+import io
+import logging
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, send_file, Response
 from io import StringIO
+
+logging.basicConfig(level=logging.DEBUG)
 
 # Add utils to python path dynamically
 import sys
@@ -153,11 +157,10 @@ def export_csv():
         cw.writerow([row['n'], row['p'], row['k'], row['temp'], row['humidity'], row['ph'], row['rainfall'], row['prediction'], row['confidence']])
     
     output = si.getvalue()
-    return send_file(
-        StringIO(output),
+    return Response(
+        output,
         mimetype="text/csv",
-        as_attachment=True,
-        download_name="prediction_history.csv"
+        headers={"Content-Disposition": "attachment;filename=prediction_history.csv"}
     )
 
 if __name__ == '__main__':
